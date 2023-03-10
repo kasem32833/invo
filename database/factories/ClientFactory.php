@@ -20,8 +20,8 @@ class ClientFactory extends Factory
             'name' => $this->faker->name(),
             'username' => $this->faker->unique()->username() ,
             'email' =>$this->faker->unique()->safeEmail() ,
-            'phone' =>$this->faker->phonenumber ,
-            'phone' =>$this->faker->country ,
+            'phone' =>$this->faker->phonenumber() ,
+            'country' =>$this->faker->country() ,
             'thumbnail' =>'https://picsum.photos/100?random='.rand(1, 22424)
         ];
     }

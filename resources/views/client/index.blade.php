@@ -25,12 +25,11 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($clients as $client)
 
                                 <tr>
                                     <td class="border py-2 w-32 text-center">
-                                        <img  width="50" class="mx-auto" src="{{$client->thumbnail}}" alt="">
+                                        <img  width="50" class="mx-auto rounded-full" src="{{$client->thumbnail}}" alt="">
                                     </td>
                                     <td class="border py-2  text-center">{{$client->name}}</td>
                                     <td class="border py-2  text-center">{{$client->username}}</td>
@@ -44,12 +43,8 @@
                                 </tr>
 
                             @endforeach
-
-
-
                         </tbody>
                      </table>
-
                 </div>
             </div>
         </div>

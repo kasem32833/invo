@@ -5,9 +5,12 @@
 
 .formLabel
 {
-    
+    @apply cursor-pointer block text-sm mb-1
 }
 .formInput
 {
-
+    @apply w-full rounded-sm
+}
+.submit-button {
+    @apply px-4 py-2 bg-indigo-500 hover:bg-indigo-700 shadow rounded text-white
 }

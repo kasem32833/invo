@@ -14,7 +14,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- create new client --}}
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('client.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mt-6 flex space-x-4">
                             <div class="flex-1">
                                 <label for="name" class="formLabel">Name</label>
@@ -53,10 +54,10 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="mt-6">
+                            <button type="submit" class="submit-button">Submit</button>
+                        </div>
                     </form>
-                    <div class="mt-6">
-                        <button type="submit" class="submit-button">Submit</button>
-                    </div>
                 </div>
             </div>
         </div>

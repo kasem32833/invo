@@ -19,27 +19,43 @@
                         <div class="mt-6 flex space-x-4">
                             <div class="flex-1">
                                 <label for="name" class="formLabel">Name</label>
-                                <input type="text" name="name" id="name" class="formInput">
+                                <input type="text" name="name" id="name" class="formInput" value="{{ old('name')}}">
+                                @error('name')
+                                    <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
+
                             <div class="flex-1">
                                 <label for="username" class="formLabel">User Naame</label>
-                                <input type="text" name="username" id="username" class="formInput">
+                                <input type="text" name="username" id="username" class="formInput" value="{{ old('username')}}">
+                                @error('username')
+                                    <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class=" flex mt-6 space-x-4">
                             <div class="flex-1">
                                 <label for="phone" class="formLabel">Phone</label>
-                                <input type="text" name="phone" id="phone" class="formInput">
+                                <input type="text" name="phone" id="phone" class="formInput" value="{{ old('phone')}}">
+                                @error('phone')
+                                    <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="flex-1">
                                 <label for="email" class="formLabel">Email</label>
-                                <input type="text" name="email" id="email" class="formInput">
+                                <input type="text" name="email" id="email" class="formInput" value="{{ old('email')}}">
+                                @error('email')
+                                    <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class=" flex space-x-2 mt-6 justify-between">
                             <div class="flex-1">
                                 <label for="country" class="formLabel">Country</label>
-                                <input type="text" name="country" id="country" class="formInput">
+                                <input type="text" name="country" id="country" class="formInput" value="{{ old('name')}}">
+                                @error('country')
+                                <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="">
                                 <label for="thumbnail" class="formLabel">Image</label>

@@ -36,7 +36,14 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'name' => 'required|max:255|string',
+            'username' => 'required|max:255|string|unique:clients,username',
+            'email' => 'required|max:255|string|email',
+            'phone' => 'max:255|string|email',
+            'country' => 'max:255|string'
+
+        ]);
     }
 
     /**

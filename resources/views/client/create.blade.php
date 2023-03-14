@@ -64,10 +64,13 @@
                             <div class="flex-1">
                                 <label for="status" class="formLabel">Status</label>
                                 <select name="status" id="status" class="formInput">
-                                    <option value="none">Select Status</option>
-                                    <option value="active" selected>Active</option>
-                                    <option value="inactive">In Active</option>
+                                    <option value="none" {{ old('status')=='none' ? 'selected' : ''}} >Select Status</option>
+                                    <option value="active" {{ old('status')=='active' ? 'selected' : ''}}>Active</option>
+                                    <option value="inactive" {{ old('status')=='inactive' ? 'selected' : ''}}>In Active</option>
                                 </select>
+                                @error('status')
+                                <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="mt-6">

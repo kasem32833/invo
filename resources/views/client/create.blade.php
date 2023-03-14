@@ -35,16 +35,16 @@
                         </div>
                         <div class=" flex mt-6 space-x-4">
                             <div class="flex-1">
-                                <label for="phone" class="formLabel">Phone</label>
-                                <input type="text" name="phone" id="phone" class="formInput" value="{{ old('phone')}}">
-                                @error('phone')
+                                <label for="email" class="formLabel">Email</label>
+                                <input type="text" name="email" id="email" class="formInput" value="{{ old('email')}}">
+                                @error('email')
                                     <p class="text-red-700 text-sm">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="flex-1">
-                                <label for="email" class="formLabel">Email</label>
-                                <input type="text" name="email" id="email" class="formInput" value="{{ old('email')}}">
-                                @error('email')
+                                <label for="phone" class="formLabel">Phone</label>
+                                <input type="text" name="phone" id="phone" class="formInput" value="{{ old('phone')}}">
+                                @error('phone')
                                     <p class="text-red-700 text-sm">{{$message}}</p>
                                 @enderror
                             </div>
@@ -57,23 +57,32 @@
                                 <p class="text-red-700 text-sm">{{$message}}</p>
                                 @enderror
                             </div>
-                            <div class="">
-                                <label for="thumbnail" class="formLabel">Image</label>
-                                <input type="file" name="thumbnail" id="thumbnail" class="formInput">
+                            <div class="w-48">
+                                <label for="">Select Your Image</label>
+                                <label for="thumbnail" class="formLabel border border-green-500 px-4 py-2 text-md-center">Image</label>
+                                <input type="file" name="thumbnail" id="thumbnail" class="formInput hidden">
+                                @error('thumbnail')
+                                <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="flex-1">
                                 <label for="status" class="formLabel">Status</label>
                                 <select name="status" id="status" class="formInput">
-                                    <option value="none">Select Status</option>
-                                    <option value="active" selected>Active</option>
-                                    <option value="inactive">In Active</option>
+                                    <option value="none" {{old('status')== 'none'? 'selected': ''}}>Select Status</option>
+                                    <option value="active" {{old('status')== 'active'? 'selected': ''}}>Active</option>
+                                    <option value="inactive" {{old('status')== 'inactive'? 'selected': ''}}>In Active</option>
                                 </select>
+                                @error('status')
+                                <p class="text-red-700 text-sm">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="mt-6">
                             <button type="submit" class="submit-button">Submit</button>
                         </div>
                     </form>
+
+
                 </div>
             </div>
         </div>

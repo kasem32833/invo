@@ -9,7 +9,7 @@
 }
 .formInput
 {
-    @apply w-full rounded-sm text-black
+    @apply w-full rounded-sm text-black 
 }
 .submit-button {
     @apply px-4 py-2 bg-indigo-500 hover:bg-indigo-700 shadow rounded text-white

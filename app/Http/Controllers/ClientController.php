@@ -13,7 +13,8 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $data = Client::all();
+    {
+        $data = Client::latest()->paginate(10);
 
         return view('client.index')->with('clients', $data);
     }
@@ -35,15 +36,61 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
+
+
+
+
         $request->validate([
             'name' => 'required|max:255|string',
             'username' => 'required|max:255|string|unique:clients,username',
-            'email' => 'required|max:255|string|email',
-            'phone' => 'max:255|string|email',
-            'country' => 'max:255|string'
+            'email' => 'required|max:255|string|email|unique:clients,email',
+            'phone' => 'max:255|string',
+            'country' => 'max:255|string',
+            'status' => 'not_in:none|string|',
+            'thumbnail' => 'image',
 
         ]);
+
+        $thumb = null;
+
+        if(!empty($request->file('thumbnail'))){
+            $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+
+            $request->file('thumbnail')->storeAs('public/uploads', $thumb);
+        }
+
+
+
+        // =============a method for sending data to database===========
+
+        Client::create([
+            'name'  => $request->name,
+            'username'  => $request->username,
+            'email'  => $request->email,
+            'phone' => $request->phone,
+            'country' => $request->country,
+            'thumbnail' => $thumb,
+            'status' => $request->status,
+        ]);
+
+        //==============another new method===============
+        // $client = new Client();
+
+        // $client->name = $request->name;
+        // $client->username = $request->username;
+        // $client->email = $request->email;
+        // $client->phone = $request->phone;
+        // $client->country = $request->country;
+        // $client->status = $request->status;
+
+        // $client->save();
+
+
+        // Client::create($request->only(['name','username','email','phone','country','status']));
+
+         return redirect()->route('client.index');
     }
 
     /**

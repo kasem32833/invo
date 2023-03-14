@@ -57,7 +57,6 @@ class ClientController extends Controller
 
         if(!empty($request->file('thumbnail'))){
             $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
-
             $request->file('thumbnail')->storeAs('public/uploads', $thumb);
         }
 

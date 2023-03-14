@@ -44,6 +44,26 @@ class ClientController extends Controller
             'country' => 'max:255|string'
 
         ]);
+
+
+        Client::create(['name', 'email', 'phone', 'country']);
+
+
+        // Client::create([
+        //     'name' => $request->name,
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'country' => $request->country,
+        // ]);
+
+        // $client = new Client();
+        // $client->name = $request->name;
+        // $client->username = $request->username;
+        // $client->email = $request->email;
+        // $client->phone = $request->phone;
+        // $client->country = $request->country;
+        // $client->save();
     }
 
     /**

@@ -50,7 +50,7 @@
                                     <td class="border py-2  text-center">{{$client->phone}}</td>
                                     <td class="border py-2  text-center">{{$client->country}}</td>
                                     <td class="border py-2  text-center">
-                                        <a href="#" class="bg-green-500 text-white px-3 py-2">Edit</a>
+                                        <a href="{{route('client.edit', $client->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
                                         <a href="#" class="bg-red-500 text-white px-3 py-2">Delete</a>
                                     </td>
                                 </tr>

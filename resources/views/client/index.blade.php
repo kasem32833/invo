@@ -50,8 +50,16 @@
                                     <td class="border py-2  text-center">{{$client->phone}}</td>
                                     <td class="border py-2  text-center">{{$client->country}}</td>
                                     <td class="border py-2  text-center">
-                                        <a href="{{route('client.edit', $client->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
-                                        <a href="#" class="bg-red-500 text-white px-3 py-2">Delete</a>
+                                        <div class="flex justify-between">
+                                            <a href="{{route('client.edit', $client->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
+                                        {{-- for delete data  --}}
+                                            <form action="{{route('client.destroy', $client->id)}}" metho='POST' onsubmit="return confirm('Do really want to delete')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 text-white px-3 py-2">Delete</button>
+                                            </form>
+                                        </div>
+
                                     </td>
                                 </tr>
 

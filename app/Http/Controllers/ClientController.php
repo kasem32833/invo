@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -125,7 +126,37 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        
+        $request->validate([
+            'name' => 'required|max:255|string',
+            'username' => 'required|max:255|string',
+            'email' => 'required|max:255|string|email',
+            'phone' => 'max:255|string',
+            'country' => 'max:255|string',
+            'thumbnail' => 'image',
+
+        ]);
+
+        $thumb = $client->thumnail;
+
+        if(!empty($request->file('thumbnail'))){
+
+            Storage::delete('public/uploads/'.$thumb);
+            $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+
+            $request->file('thumbnail')->storeAs('public/uploads', $thumb);
+        }
+
+        Client::find($client->id)->update([
+            'name'  => $request->name,
+            'username'  => $request->username,
+            'email'  => $request->email,
+            'phone' => $request->phone,
+            'country' => $request->country,
+            'thumbnail' => $thumb,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('client.index')->with('success', 'client Updated');
     }
 
     /**
@@ -136,6 +167,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        Storage::delete('public/uploads/'. $client->thumbnail);
+       $client->delete();
+       return redirect()->route('client.index')->with( 'success', 'client deleted!');
     }
 }

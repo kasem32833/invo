@@ -10,7 +10,7 @@
     </x-slot>
 
 
-    {{$client}}
+    
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -19,6 +19,7 @@
                     {{-- create new client --}}
                     <form action="{{route('client.update', $client->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mt-6 flex space-x-4">
                             <div class="flex-1">
                                 <label for="name" class="formLabel">Name</label>

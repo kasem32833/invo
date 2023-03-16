@@ -9,8 +9,8 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
-jQuery(document).ready(function($)){
-   setTimeout(function () {
+jQuery(document).ready(function($){
+
     $('#status-message').slideUp('slow')
-    }, 2000);
+
 }

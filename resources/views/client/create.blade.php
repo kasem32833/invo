@@ -52,6 +52,7 @@
                         <div class=" flex space-x-2 mt-6 justify-between">
                             <div class="flex-1">
                                 <label for="country" class="formLabel">Country</label>
+                                <select name="country" id=""></select>
                                 <input type="text" name="country" id="country" class="formInput" value="{{ old('name')}}">
                                 @error('country')
                                 <p class="text-red-700 text-sm">{{$message}}</p>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Supports\Facades\Stroge;
 
 class ClientController extends Controller
 {
@@ -156,7 +157,7 @@ class ClientController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('client.index')->with('success', 'client Updated');
+        return redirect('client.index');
     }
 
     /**

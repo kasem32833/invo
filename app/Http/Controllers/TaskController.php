@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Client;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -41,7 +43,22 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required','string', 'max:255'],
+            'price' => ['required','integer','max:255'],
+            'client_id' => ['required','max:255','not_in:none'],
+            'description' => ['required'],
+        ]);
+
+        Task::create([
+            'name' =>$request->name,
+            'price' =>$request->price,
+            'description' => $request->description,
+            'client_id' => $request->client_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('task.index')->with(['success', 'Task Created']);
     }
 
     /**

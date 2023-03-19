@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TaskController;
 
 
 // Frontend
@@ -19,6 +20,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     Route::resource('client', ClientController::class);
+    Route::resource('task', TaskController::class);
 
 
 });

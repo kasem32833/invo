@@ -51,7 +51,7 @@
 
                                 <tr>
                                     <td class="border py-2 w-32 text-center">
-                                        <img  width="50" class="mx-auto rounded-full" src="{{getImageUrl($client->thumbnail)}}" alt="">
+                                        <img  width="50"   class="mx-auto rounded-full" src="{{getImageUrl($client->thumbnail)}}" alt="">
                                     </td>
                                     <td class="border py-2  text-center">{{$client->name}}</td>
                                     <td class="border py-2  text-center">{{$client->username}}</td>
@@ -61,8 +61,9 @@
                                     <td class="border py-2  text-center">
                                         <div class="flex justify-between">
                                             <a href="{{route('client.edit', $client->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
-                                        {{-- for delete data  --}}
-                                            <form action="{{route('client.destroy', $client->id)}}" metho='POST' onsubmit="return confirm('Do really want to delete')">
+                                            {{-- for delete data  --}}
+
+                                            <form action="{{route('client.destroy', $client->id)}}" method='POST'>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 text-white px-3 py-2">Delete</button>

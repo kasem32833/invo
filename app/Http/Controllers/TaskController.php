@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,7 +15,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::with('client')->orderBy('id', 'DESC')->paginate(10);
+        return view('task.index')->with([
+            'tasks' => $tasks,
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('task.create')->with([
+            'clients' => Client::all(),
+        ]);
     }
 
     /**

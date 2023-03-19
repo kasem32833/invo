@@ -43,12 +43,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required','string', 'max:255'],
-            'price' => ['required','integer','max:255'],
-            'client_id' => ['required','max:255','not_in:none'],
-            'description' => ['required'],
-        ]);
+
 
         Task::create([
             'name' =>$request->name,
@@ -69,9 +64,19 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+
     }
 
+    // task validation
+    public function taskValidate(Request $request)
+    {
+        return $request->validate([
+            'name' => ['required','string', 'max:255'],
+            'price' => ['required','integer','max:255'],
+            'client_id' => ['required','max:255','not_in:none'],
+            'description' => ['required'],
+        ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -80,7 +85,11 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+
+        return view('task.edit')->with([
+            'task' => $task,
+            'clients' => Client::all(),
+        ]);
     }
 
     /**
@@ -92,7 +101,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $this->taskValidate($request);
+
+
+
+        $task->update([
+            'name' =>$request->name,
+            'price' =>$request->price,
+            'description' => $request->description,
+            'client_id' => $request->client_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('task.index')->with(['success', 'Task Edited']);
     }
 
     /**

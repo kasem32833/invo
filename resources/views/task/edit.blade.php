@@ -14,8 +14,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- create new client --}}
-                    <form action="{{route('task.update', $task->id )}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('task.update', $task->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mt-6 flex space-x-4">
                             <div class="flex-1">
                                 <label for="name" class="formLabel">Name</label>
@@ -28,7 +29,7 @@
                         <div class=" flex mt-6 space-x-4">
                             <div class="flex-1">
                                 <label for="price" class="formLabel">price</label>
-                                <input type="number" name="price" id="price" class="formInput py-2" value="{{ $task->price }}">
+                                <input type="number" name="price" id="price" class="formInput py-2" value="{{ $task->price}}">
                                 @error('price')
                                     <p class="text-red-700 text-sm">{{$message}}</p>
                                 @enderror
@@ -40,7 +41,8 @@
 
                                     {{-- for dynamic country --}}
                                     @foreach ($clients as $client)
-                                        <option value="{{$client->id}} {{$client->id == old('client_id') ? 'selected': ''}}">{{$client->name}}</option>
+
+                                        <option value="{{ $client->id }} {{ $client->id == $task->client_id ? 'selected' : '' }}">{{$client->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('client_id')
@@ -52,7 +54,7 @@
                             <div class="flex-1">
                                 <label for="description" class="formLabel">Description</label>
                                 <textarea name="description" id="description"  rows="10" class="formInput">
-                                    {{old('description')}}
+                                    {{ $task->description }}
                                 </textarea>
                                 @error('description')
                                 <p class="text-red-700 text-sm">{{$message}}</p>
@@ -60,7 +62,7 @@
                             </div>
                         </div>
                         <div class="mt-6">
-                            <button type="submit" class="submit-button">Submit</button>
+                            <button type="submit" class="submit-button">Update</button>
                         </div>
                     </form>
                 </div>

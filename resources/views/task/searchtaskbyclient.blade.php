@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Tasks') }}
+                {{ __($clients->name) }}
+                <p>{{$clients->country}}</p>
+                <p>{{$clients->phone}}</p>
+                <p>{{$clients->email}}</p>
             </h2>
             <a href="{{route('task.create')}}" class="border border-indigo-700 bg-indigo-500 hover:bg-indigo-700 rounded text-white px-4 py-2 shadow">Add New</a>
         </div>
@@ -27,12 +30,11 @@
                                 <th class="border py-2">Name</th>
                                 <th class="border py-2">price</th>
                                 <th class="border py-2">status</th>
-                                <th class="border py-2">client</th>
                                 <th class="border py-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tasks as $task)
+                            @foreach ($clients->tasks as $task)
 
                                 <tr>
 
@@ -40,7 +42,6 @@
                                     <td class="border py-2  text-left px-2">{{$task->name}}</td>
                                     <td class="border py-2  text-center">{{$task->price}}</td>
                                     <td class="border py-2  text-center capitalize">{{$task->status}}</td>
-                                    <td class="border py-2  text-center"><a class="text-orange" href="{{route('searchTaskByClient', $task->client)}}">{{$task->client->name}}</a></td>
                                     <td class="border py-2  text-center">
                                         <div class="flex justify-around">
                                             <a href="{{route('task.edit', $task->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
@@ -63,7 +64,7 @@
 
                         </tbody>
                      </table>
-                     <div class="mt-5">{{$tasks->links()}}</div>
+
                 </div>
             </div>
         </div>

@@ -26,6 +26,7 @@
                                 <th class="border py-2">email</th>
                                 <th class="border py-2">Phone</th>
                                 <th class="border py-2">Country</th>
+                                <th class="border py-2">Tasks</th>
                                 <th class="border py-2">Action</th>
                             </tr>
                         </thead>
@@ -51,15 +52,18 @@
                                     <td class="border py-2  text-center">{{$client->email}}</td>
                                     <td class="border py-2  text-center">{{$client->phone}}</td>
                                     <td class="border py-2  text-center">{{$client->country}}</td>
+                                    <td class="border py-2  text-center"><a href="{{route('searchTaskByClient', $client )}}">{{count($client->tasks)}}</a></td>
                                     <td class="border py-2  text-center">
                                         <div class="flex justify-between">
                                             <a href="{{route('client.edit', $client->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
                                             {{-- for delete data  --}}
 
-                                            <form action="{{route('client.destroy', $client->id)}}" method='POST'>
+                                            <form action="{{route('client.destroy', $client->id)}}" method='POST'
+                                                onsubmit="return confirm('Do you really want to delete?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="bg-red-500 text-white px-3 py-2">Delete</button>
+                                                <button type="submit"
+                                                class="bg-red-500 text-white px-3 py-2">Delete</button>
                                             </form>
                                         </div>
 

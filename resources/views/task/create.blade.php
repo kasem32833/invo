@@ -13,6 +13,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (count($clients) == 0)
+                        {{-- When there is no client --}}
+                        <div class="flex flex-col justify-center items-center bg-orange-400 w-full">
+                            <h4 class="text-xl">You don't have any client</h4>
+                            <p>Please add client first</p>
+                            <a href="{{route('client.create')}} " class="bg-orange-900 px-4 py-2 rounded-md my-4">Add your client</a>
+                        </div>
+
+                    @endif
+
                     {{-- create new client --}}
                     <form action="{{route('task.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -49,9 +59,9 @@
                             </div>
                         </div>
                         <div class=" flex space-x-2 mt-6 justify-between">
-                            <div class="flex-1">
+                            <div class="flex-1 text-white">
                                 <label for="description" class="formLabel">Description</label>
-                                <textarea name="description" id="description"  rows="10" class="formInput">
+                                <textarea name="description" id="description"  rows="10" class="formInput ">
                                     {{old('description')}}
                                 </textarea>
                                 @error('description')
@@ -67,4 +77,22 @@
             </div>
         </div>
     </div>
+    @section('scripts')
+        <script>
+            $('#description').summernote({
+            placeholder: '',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+            });
+        </script>
+    @endsection
 </x-app-layout>

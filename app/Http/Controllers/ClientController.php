@@ -15,9 +15,16 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data = Client::latest()->paginate(10);
+        $data = Client::with('tasks')->latest()->paginate(10);
 
         return view('client.index')->with('clients', $data);
+    }
+
+    public function searchTaskByClient( Client $client )
+    {
+        return view('task.searchtaskbyclient')->with([
+            'clients' => $client,
+        ]);
     }
 
     /**

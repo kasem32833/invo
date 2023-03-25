@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->longText('description');
             $table->integer('price');
+            $table->enum('status', ['pending', 'completed'])->default('pending');
             $table->foreignId('client_id');
             $table->foreignId('user_id');
             $table->timestamps();

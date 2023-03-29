@@ -23,6 +23,9 @@ class TaskController extends Controller
         ]);
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,6 +37,7 @@ class TaskController extends Controller
             'clients' => Client::all(),
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -64,7 +68,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-
+        return view('task.show')->with('task', $task);
     }
 
     // task validation
@@ -72,7 +76,7 @@ class TaskController extends Controller
     {
         return $request->validate([
             'name' => ['required','string', 'max:255'],
-            'price' => ['required','integer','max:255'],
+            'price' => ['required','integer'],
             'client_id' => ['required','max:255','not_in:none'],
             'description' => ['required'],
         ]);
@@ -124,7 +128,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->delete();
-        return redirect()->route('task.index');
+        //
     }
+
 }

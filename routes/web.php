@@ -22,10 +22,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('client', ClientController::class);
 
 
-    Route::get('task/{client:username}', [ClientController::class, 'searchTaskByClient'])->name('searchTaskByClient');
 
     Route::resource('task', TaskController::class);
-
+    Route::get('task/client/{client:username}', [ClientController::class, 'searchTaskByClient'])->name('searchTaskByClient');
+    Route::put('task/{task}/complete', [TaskController::class, 'markAsComplete'])->name('markAsComplete');
 
 });
 

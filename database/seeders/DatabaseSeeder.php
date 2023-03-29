@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Client;
 use App\Models\Task;
+use App\Models\User;
 
 
 class DatabaseSeeder extends Seeder
@@ -19,9 +20,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        User::create([
             'name' => 'Test User',
             'email' => 'admin@example.com',
+            'password' => bcrypt('123'),
+            'thumbnail' => 'https://picsum.phptos/300'
+        ]);
+        User::create([
+            'name' => 'Demo User',
+            'email' => 'demo@example.com',
             'password' => bcrypt('123'),
             'thumbnail' => 'https://picsum.phptos/300'
         ]);

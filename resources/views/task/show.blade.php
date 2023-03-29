@@ -8,8 +8,7 @@
         </div>
     </x-slot>
 
-    {{-- for displaying messages --}}
-    @include('layouts.messages')
+
 
 
 
@@ -23,13 +22,29 @@
                         <h2>{{$task->name}}</h2>
                         <h2>Price: ${{$task->price}}</h2>
                         <h2>{{$task->client->name}}</h2>
+                        <div class="flex justify-between items-center">
+                            <div class="bg-indigo-500 inline-block px-4 py-2 rounded">
+                                <p>{{$task->status}}</p>
+                            </div>
+                            <div class="bg-indigo-500 inline-block px-4 py-2 rounded">
+                                @if ($task->status == 'pending')
+                                <form action="{{route('markAsComplete', $task)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="">
+                                        <button type="submit">Mark as Complte</button>
+                                    </div>
+                                </form>
+
+                                @endif
+                            </div>
+
+                        </div>
                         <h4 class="my-3 font-bold">Task Details:</h4>
                         <div class="my-4 p-5 border">
                             {!! $task->description !!}
                         </div>
                    </div>
-
-
                 </div>
             </div>
         </div>

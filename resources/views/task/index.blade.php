@@ -8,8 +8,7 @@
         </div>
     </x-slot>
 
-    {{-- for displaying messages --}}
-    @include('layouts.messages')
+
 
 
 

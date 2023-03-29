@@ -68,6 +68,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        
         return view('task.show')->with('task', $task);
     }
 
@@ -128,7 +129,16 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('task.index');
+    }
+
+    public function markAsComplete(Task $task)
+    {
+        $task->updat([
+            'status' => 'complete',
+        ]);
+        return redirect()->back();
     }
 
 }

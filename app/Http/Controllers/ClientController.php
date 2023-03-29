@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -15,16 +16,14 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data = Client::with('tasks')->latest()->paginate(10);
+        $data = Client::where('user_id', Auth::user()->id)->with('tasks')->latest()->paginate(10);
 
         return view('client.index')->with('clients', $data);
     }
 
     public function searchTaskByClient( Client $client )
     {
-        return view('task.searchtaskbyclient')->with([
-            'clients' => $client,
-        ]);
+        return view('task.show');
     }
 
     /**

@@ -74,6 +74,7 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'country' => $request->country,
             'thumbnail' => $thumb,
+            'user_id' => Auth::user()->id,
             'status' => $request->status,
         ]);
 
@@ -156,6 +157,7 @@ class ClientController extends Controller
             'phone' => $request->phone,
             'country' => $request->country,
             'thumbnail' => $thumb,
+            'user_id' => Auth::user()->id,
             'status' => $request->status,
         ]);
 

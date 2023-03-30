@@ -45,10 +45,10 @@
                                     <td class="border py-2  text-center">
                                         <div class="flex justify-around">
                                             <a href="{{route('task.edit', $task->id)}}" class="bg-green-500 text-white px-3 py-2">Edit</a>
-                                            <a href="{{route('task.show', $task->id)}}" class="bg-orange-500 text-white px-3 py-2">Show</a>
+                                            <a href="{{route('task.show', $task->id)}}" class="bg-orange-500 text-white px-3 py-2">View</a>
 
                                             {{-- for delete data  --}}
-                                            <form action="{{route('task.destroy', $task->id)}}" method='POST'
+                                            <form action="{{route('task.destroy', $task->slug)}}" method='POST'
                                                 onsubmit="return confirm('Do you really want to delete?');">
                                                 @csrf
                                                 @method('DELETE')

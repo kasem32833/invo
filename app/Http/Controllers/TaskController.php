@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('client')->orderBy('id', 'DESC')->paginate(10);
+        $tasks = Task::where('user_id', Auth::user()->id)->with('client')->orderBy('id', 'DESC')->paginate(10);
         return view('task.index')->with([
             'tasks' => $tasks,
         ]);
@@ -66,9 +66,9 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($slug)
     {
-        
+        $task = Task::where('slug', $slug)->get()->first();
         return view('task.show')->with('task', $task);
     }
 
